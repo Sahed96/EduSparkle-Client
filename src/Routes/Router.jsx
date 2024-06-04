@@ -5,6 +5,9 @@ import Login from "../Pages/LoginPage/Login";
 import Register from "../Pages/RegisterPage/Register";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AllScholarship from "../Pages/AllScholarship/AllScholarship";
+import ScholarshipDetails from "../Pages/ScholarshipDetails/ScholarshipDetails";
+import PrivateRoute from "./Private/PrivateRoute";
+import CheckOut from "../Pages/CheckOut/CheckOut";
 
 export const router = createBrowserRouter([
   {
@@ -21,12 +24,24 @@ export const router = createBrowserRouter([
         element: <AllScholarship />,
       },
       {
+        path: "/details/:id",
+        element: (
+          <PrivateRoute>
+            <ScholarshipDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "/login",
         element: <Login />,
       },
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/checkout/:id",
+        element: <CheckOut />,
       },
     ],
   },

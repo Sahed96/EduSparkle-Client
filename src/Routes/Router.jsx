@@ -8,6 +8,7 @@ import AllScholarship from "../Pages/AllScholarship/AllScholarship";
 import ScholarshipDetails from "../Pages/ScholarshipDetails/ScholarshipDetails";
 import PrivateRoute from "./Private/PrivateRoute";
 import CheckOut from "../Pages/CheckOut/CheckOut";
+import ApplicantForm from "../Pages/ApplicantForm/ApplicantForm";
 
 export const router = createBrowserRouter([
   {
@@ -41,7 +42,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/checkout/:id",
-        element: <CheckOut />,
+        element: (
+          <PrivateRoute>
+            <CheckOut />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/applyForm",
+        element: (
+          <PrivateRoute>
+            <ApplicantForm />
+          </PrivateRoute>
+        ),
       },
     ],
   },

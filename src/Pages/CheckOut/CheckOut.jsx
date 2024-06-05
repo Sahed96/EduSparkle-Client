@@ -27,7 +27,7 @@ const CheckOut = () => {
     Service_Charge,
     Application_Fees,
     Tuition_fees,
-    // _id,
+    _id,
   } = details;
 
   const listArray = [
@@ -37,7 +37,7 @@ const CheckOut = () => {
   ];
   return (
     <div>
-      <div className="relative mx-auto my-20 space-y-8 bg-white p-8 shadow-[0px_0px_30px_2px_rgba(100,100,111,0.1)] md:w-[300px] lg:w-[450px]">
+      <div className="relative mx-auto my-20 space-y-8 bg-white p-8 shadow-[0px_0px_30px_2px_rgba(100,100,111,0.1)] md:w-[300px] lg:w-[600px]">
         {/* top part  */}
         <div>
           <img
@@ -148,7 +148,7 @@ const CheckOut = () => {
           </ul>
           <div>
             <Elements stripe={stripePromise}>
-              <CheckoutForm />
+              <CheckoutForm id={_id} fees={Application_Fees} />
             </Elements>
           </div>
           {/* <div className="flex justify-center pt-4">

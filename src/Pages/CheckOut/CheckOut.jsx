@@ -21,6 +21,8 @@ const CheckOut = () => {
 
   const {
     Scholarship_Name,
+    University_Name,
+    Subject_category,
     University_Image,
     Scholarship_Category,
     Subject_name,
@@ -148,7 +150,13 @@ const CheckOut = () => {
           </ul>
           <div>
             <Elements stripe={stripePromise}>
-              <CheckoutForm id={_id} fees={Application_Fees} />
+              <CheckoutForm
+                university={University_Name}
+                ScholarCategory={Scholarship_Category}
+                subject={Subject_category}
+                id={_id}
+                fees={Application_Fees}
+              />
             </Elements>
           </div>
           {/* <div className="flex justify-center pt-4">

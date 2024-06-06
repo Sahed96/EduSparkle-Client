@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/applyForm",
+        path: "/applyForm/:transId",
         element: (
           <PrivateRoute>
             <ApplicantForm />

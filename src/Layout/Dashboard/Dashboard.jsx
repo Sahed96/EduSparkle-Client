@@ -16,7 +16,7 @@ const Dashboard = () => {
             <NavLink to="profile">My Profile</NavLink>
           </li>
           <li>
-            <NavLink to="">My Application</NavLink>
+            <NavLink to="myApplication">My Application</NavLink>
           </li>
           <li>
             <NavLink to="">My Reviews</NavLink>

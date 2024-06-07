@@ -6,7 +6,14 @@ import useAuth from "../../AuthProvider/useAuth";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const CheckoutForm = ({ fees, id, university, subject, ScholarCategory }) => {
+const CheckoutForm = ({
+  fees,
+  id,
+  university,
+  subject,
+  ScholarCategory,
+  serviceCharge,
+}) => {
   // console.log(id);
   // console.log(fees);
   const [error, setError] = useState("");
@@ -77,8 +84,9 @@ const CheckoutForm = ({ fees, id, university, subject, ScholarCategory }) => {
         const payment = {
           name: user.displayName,
           email: user.email,
-          price: fees,
+          Application_Fees: fees,
           University_Name: university,
+          Service_Charge: serviceCharge,
           Scholarship_Category: ScholarCategory,
           Subject_category: subject,
           transactionId: paymentIntent.id,
@@ -95,7 +103,7 @@ const CheckoutForm = ({ fees, id, university, subject, ScholarCategory }) => {
             icon: "success",
             title: "Payment Successful !Thank you!",
             showConfirmButton: false,
-            timer: 2000,
+            timer: 1500,
           });
           console.log(paymentIntent.id);
           navigate(`/applyForm/${paymentIntent.id}`);

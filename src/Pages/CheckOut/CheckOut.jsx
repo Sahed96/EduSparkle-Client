@@ -156,6 +156,7 @@ const CheckOut = () => {
                 subject={Subject_category}
                 id={_id}
                 fees={Application_Fees}
+                serviceCharge={Service_Charge}
               />
             </Elements>
           </div>

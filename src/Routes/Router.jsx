@@ -11,6 +11,7 @@ import CheckOut from "../Pages/CheckOut/CheckOut";
 import ApplicantForm from "../Pages/ApplicantForm/ApplicantForm";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import Profile from "../Layout/Dashboard/Page/Profile.jsx/Profile";
+import MyApplication from "../Layout/Dashboard/Page/MyApplication/MyApplication";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +68,14 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "myApplication",
+        element: (
+          <PrivateRoute>
+            <MyApplication />
+          </PrivateRoute>
+        ),
       },
     ],
   },

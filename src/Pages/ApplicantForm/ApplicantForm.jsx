@@ -27,6 +27,8 @@ const ApplicantForm = () => {
     Subject_category,
     Scholarship_Category,
     scholarshipId,
+    Application_Fees,
+    Service_Charge,
   } = details;
 
   const { user } = useAuth();
@@ -57,6 +59,8 @@ const ApplicantForm = () => {
         image: res.data.data.display_url,
         date: new Date(),
         scholarshipId,
+        Application_Fees,
+        Service_Charge,
       };
 
       const newRes = await axiosSecure.post("/applicantData", applicantData);

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useAuth from "../AuthProvider/useAuth";
+import { BiSolidDashboard } from "react-icons/bi";
 
 const Navbar = () => {
   const { logout, user } = useAuth();
@@ -10,6 +11,12 @@ const Navbar = () => {
       </li>
       <li>
         <Link to="/scholarships">All Scholarship</Link>
+      </li>
+      <li>
+        <Link to="dashboard/profile">
+          <BiSolidDashboard />
+          Dashboard
+        </Link>
       </li>
     </>
   );

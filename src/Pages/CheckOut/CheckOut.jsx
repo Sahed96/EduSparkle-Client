@@ -159,11 +159,6 @@ const CheckOut = () => {
               />
             </Elements>
           </div>
-          {/* <div className="flex justify-center pt-4">
-            <button className="h-16 w-full rounded-full border-2 border-sky-300 font-black text-sky-800 duration-300 dark:text-[#6CC2FB]">
-              Pay Now
-            </button>
-          </div> */}
         </div>
       </div>
     </div>

@@ -50,14 +50,14 @@ const ScholarshipDetails = () => {
               {Scholarship_Description}
             </p>
             <div className="grid grid-cols-2 gap-8 mb-7">
-              <p>{Subject_name}</p>
-              <p>{Scholarship_Category}</p>
-              <p>{Stipend}</p>
-              <p>{Service_Charge}</p>
-              <p>${Application_Fees}</p>
-              <p>${Tuition_fees}</p>
-              <p>{Post_Date}</p>
-              <p>{Application_Deadline}</p>
+              <p>Subject Name: {Subject_name}</p>
+              <p>Scholarship Category: {Scholarship_Category}</p>
+              <p>Stipend: ${Stipend}</p>
+              <p>Service Charge: ${Service_Charge}</p>
+              <p>Application Fess: ${Application_Fees}</p>
+              <p>Tuition Fees: ${Tuition_fees}</p>
+              <p>Application Start: {Post_Date}</p>
+              <p>Application End: {Application_Deadline}</p>
             </div>
             <div className="flex flex-wrap justify-center">
               <Link to={`/checkout/${_id}`}>

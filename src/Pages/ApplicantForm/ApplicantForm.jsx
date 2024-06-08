@@ -25,6 +25,8 @@ const ApplicantForm = () => {
   const {
     University_Name,
     Subject_category,
+    University_City,
+    University_Country,
     Scholarship_Category,
     scholarshipId,
     Application_Fees,
@@ -60,6 +62,8 @@ const ApplicantForm = () => {
         date: new Date(),
         scholarshipId,
         Application_Fees,
+        University_City,
+        University_Country,
         Service_Charge,
       };
 

@@ -23,6 +23,8 @@ const CheckOut = () => {
     Scholarship_Name,
     University_Name,
     Subject_category,
+    University_Country,
+    University_City,
     University_Image,
     Scholarship_Category,
     Subject_name,
@@ -152,6 +154,8 @@ const CheckOut = () => {
             <Elements stripe={stripePromise}>
               <CheckoutForm
                 university={University_Name}
+                city={University_City}
+                country={University_Country}
                 ScholarCategory={Scholarship_Category}
                 subject={Subject_category}
                 id={_id}

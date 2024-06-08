@@ -11,6 +11,8 @@ const CheckoutForm = ({
   id,
   university,
   subject,
+  city,
+  country,
   ScholarCategory,
   serviceCharge,
 }) => {
@@ -86,6 +88,8 @@ const CheckoutForm = ({
           email: user.email,
           Application_Fees: fees,
           University_Name: university,
+          University_City: city,
+          University_Country: country,
           Service_Charge: serviceCharge,
           Scholarship_Category: ScholarCategory,
           Subject_category: subject,

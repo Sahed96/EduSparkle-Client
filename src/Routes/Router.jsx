@@ -13,6 +13,7 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import Profile from "../Layout/Dashboard/Page/Profile.jsx/Profile";
 import MyApplication from "../Layout/Dashboard/Page/MyApplication/MyApplication";
 import MyReviews from "../Layout/Dashboard/Page/MyReviews/MyReviews";
+import Users from "../Layout/Dashboard/Page/Users/Users";
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "manageUser",
+        element: <Users />,
       },
       {
         path: "myApplication",

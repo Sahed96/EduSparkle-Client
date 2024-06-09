@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import useAuth from "../../AuthProvider/useAuth";
 import { useEffect } from "react";
 import Aos from "aos";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
   useEffect(() => {
@@ -17,8 +18,8 @@ const Register = () => {
 
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
-
-  const { createUser } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const { createUser, updateUserProfile } = useAuth();
 
   const {
     register,
@@ -28,22 +29,32 @@ const Register = () => {
 
   const onSubmit = (data) => {
     const { email, password } = data;
-    createUser(email, password)
-      .then((result) => {
-        const currentUser = result.user;
-
-        if (currentUser) {
-          toast.success("Account created Successfully ", {
-            duration: 2000,
+    createUser(email, password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      updateUserProfile(data.name, data.photoURL)
+        .then(() => {
+          // create user entry in the database
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+            photo: data.photoURL,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              toast.success("Account created Successfully ", {
+                duration: 1500,
+              });
+              setTimeout(() => {
+                navigate("/");
+              }, 1500);
+            }
           });
-          setTimeout(() => {
-            navigate("/");
-          }, 2000);
-        }
-      })
-      .catch(() => {
-        toast.error("Failed to create account");
-      });
+        })
+        .catch(() => {
+          toast.error("Failed to create account");
+        });
+    });
   };
 
   return (
@@ -98,16 +109,16 @@ const Register = () => {
             )}
           </div>
           <div className="space-y-1 text-sm">
-            <label htmlFor="photo" className="block dark:text-gray-600">
+            <label htmlFor="photoURL" className="block dark:text-gray-600">
               Photo
             </label>
             <input
               type="text"
-              name="photo"
+              name="photoURL"
               id="photo"
               placeholder="Photo"
               className="w-full px-4 py-3 rounded-md dark:border-gray-300 border-2 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
-              {...register("photo")}
+              {...register("photoURL")}
             />
             {errors.photo && (
               <span className=" text-red-600 font-semibold">

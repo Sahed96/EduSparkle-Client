@@ -1,46 +1,29 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import useAuth from "../../AuthProvider/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SocialLogin = () => {
   const { googleLogin } = useAuth();
+  const axiosPublic = useAxiosPublic();
 
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
 
   const handleGoogleLogin = () => {
-    googleLogin()
-      .then((result) => {
-        if (result.user) {
-          toast.success("Login Successfully", {
-            duration: 2000,
-          });
-          setTimeout(() => {
-            navigate(location?.state || "/");
-          }, 2000);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
+    googleLogin().then((result) => {
+      console.log(result.user);
+      const userInfo = {
+        email: result.user?.email,
+        name: result.user?.displayName,
+      };
+      axiosPublic.post("/users", userInfo).then((res) => {
+        console.log(res.data);
+        navigate("/");
       });
+    });
   };
-  // const handleGitHubLogin = () => {
-  //   gitHubLogin()
-  //     .then((result) => {
-  //       if (result.user) {
-  //         toast.success("Login Successfully", {
-  //           duration: 2000,
-  //         });
-  //         setTimeout(() => {
-  //           navigate(location?.state || "/");
-  //         }, 2000);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
 
   return (
     <div className="flex justify-center space-x-4">

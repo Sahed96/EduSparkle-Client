@@ -19,7 +19,7 @@ const Dashboard = () => {
             <NavLink to="myApplication">My Application</NavLink>
           </li>
           <li>
-            <NavLink to="">My Reviews</NavLink>
+            <NavLink to="myReview">My Reviews</NavLink>
           </li>
         </ul>
       </div>

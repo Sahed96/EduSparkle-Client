@@ -153,6 +153,7 @@ const CheckOut = () => {
           <div>
             <Elements stripe={stripePromise}>
               <CheckoutForm
+                Scholarship_Name={Scholarship_Name}
                 university={University_Name}
                 city={University_City}
                 country={University_Country}

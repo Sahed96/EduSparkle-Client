@@ -2,11 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { Link, useParams } from "react-router-dom";
 
-// import { useLoaderData } from "react-router-dom";
-
 const ScholarshipDetails = () => {
-  //   const details = useLoaderData();
-
   const { id } = useParams();
   console.log(id);
   const axiosSecure = useAxiosSecure();

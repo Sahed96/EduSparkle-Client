@@ -15,6 +15,7 @@ const CheckoutForm = ({
   country,
   ScholarCategory,
   serviceCharge,
+  Scholarship_Name,
 }) => {
   // console.log(id);
   // console.log(fees);
@@ -93,6 +94,7 @@ const CheckoutForm = ({
           Service_Charge: serviceCharge,
           Scholarship_Category: ScholarCategory,
           Subject_category: subject,
+          Scholarship_Name,
           transactionId: paymentIntent.id,
           date: new Date(),
           scholarshipId: id,

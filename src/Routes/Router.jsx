@@ -12,6 +12,7 @@ import ApplicantForm from "../Pages/ApplicantForm/ApplicantForm";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import Profile from "../Layout/Dashboard/Page/Profile.jsx/Profile";
 import MyApplication from "../Layout/Dashboard/Page/MyApplication/MyApplication";
+import MyReviews from "../Layout/Dashboard/Page/MyReviews/MyReviews";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +75,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyApplication />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "myReview",
+        element: (
+          <PrivateRoute>
+            <MyReviews />
           </PrivateRoute>
         ),
       },

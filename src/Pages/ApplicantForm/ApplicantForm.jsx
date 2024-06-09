@@ -31,6 +31,7 @@ const ApplicantForm = () => {
     scholarshipId,
     Application_Fees,
     Service_Charge,
+    Scholarship_Name,
   } = details;
 
   const { user } = useAuth();
@@ -65,6 +66,7 @@ const ApplicantForm = () => {
         University_City,
         University_Country,
         Service_Charge,
+        Scholarship_Name,
       };
 
       const newRes = await axiosSecure.post("/applicantData", applicantData);

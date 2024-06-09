@@ -1,12 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../AuthProvider/useAuth";
-import { MdEditNote } from "react-icons/md";
+import { MdEditNote, MdOutlineCancel } from "react-icons/md";
 import { LiaCommentDots } from "react-icons/lia";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const MyApplication = () => {
+  const [singleApplicantData, setSingleApplicantData] = useState({});
+  const [id, setId] = useState("");
+  const [openModal, setOpenModal] = useState(true);
+  const [formData, setFormData] = useState({});
+  useEffect(() => {
+    setOpenModal(false);
+  }, []);
+
   const { user } = useAuth();
+
   const axiosSecure = useAxiosSecure();
   const { data: applicantData = [], isLoading } = useQuery({
     queryKey: ["applicantData", user?.email],
@@ -15,6 +26,68 @@ const MyApplication = () => {
       return res.data;
     },
   });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(id);
+
+    const rating = e.target.rating.value;
+    const comment = e.target.comment.value;
+    const data = {
+      rating,
+      comment,
+    };
+    setFormData(data);
+    console.log(id, rating, comment);
+
+    axiosSecure.get(`/singleApplyData/${id}`).then((res) => {
+      setSingleApplicantData(res.data);
+      console.log(singleApplicantData);
+    });
+    // if (Object.keys(singleApplicantData).length > 0) {
+    //   return (
+    //     <div className=" w-12 h-12 mb-4 mx-auto">
+    //       <div className="grid grid-cols-2 h-full w-full overflow-hidden shadow-lg rounded-full animate-spin">
+    //         <span className="h-6 w-6 rounded-tl-full bg-transparent"></span>
+    //         <span className="h-6 w-6 rounded-tr-full bg-sky-500"></span>
+    //         <span className="h-6 w-6 rounded-bl-full bg-sky-500"></span>
+    //         <span className="h-6 w-6 rounded-br-full"></span>
+    //       </div>
+    //     </div>
+    //   );
+    // }
+    // console.log(data);
+    // axiosSecure.post("/reviewData", data);
+  };
+  // if (data) {
+  useEffect(() => {
+    if (Object.keys(singleApplicantData).length > 0) {
+      console.log(singleApplicantData);
+      const reviewData = {
+        name: user?.displayName,
+        email: user?.email,
+        rating: formData.rating,
+        comment: formData.comment,
+        scholarshipId: singleApplicantData.scholarshipId,
+        Scholarship_Name: singleApplicantData.Scholarship_Name,
+        University_Name: singleApplicantData.universityName,
+        date: new Date(),
+      };
+      axiosSecure.post("/reviewData", reviewData).then((res) => {
+        console.log(res.data);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "thanks for your comment",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+    }
+  }, [singleApplicantData]);
+
+  //   // console.log(reviewData);
+  // }
 
   if (isLoading) {
     return (
@@ -32,7 +105,7 @@ const MyApplication = () => {
   return (
     <div>
       <div className="overflow-x-auto ">
-        <table className="min-w-full shadow-md border mx-auto border-gray-100  my-6">
+        <table className="min-w-full shadow-md border mx-auto border-gray-100">
           <thead>
             <tr className="bg-[#419ee0] text-white">
               <th className="py-3 px-6 text-left border-b">University Name</th>
@@ -130,18 +203,80 @@ const MyApplication = () => {
                   </ul>
                 </td>
                 <td className="py-4 px-6 border-b text-end">
-                  <button className="flex items-center rounded-full bg-orange-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-orange-700">
-                    <LiaCommentDots
-                      viewBox="0 0 32 32"
-                      className="mr-1 h-6 w-6"
-                    />
-                    Review
-                  </button>
+                  <Link>
+                    <button
+                      onClick={() => {
+                        setOpenModal(true);
+                        setId(item.scholarshipId);
+                      }}
+                      className="flex items-center rounded-full bg-orange-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-orange-700"
+                    >
+                      <LiaCommentDots
+                        viewBox="0 0 32 32"
+                        className="mr-1 h-6 w-6"
+                      />
+                      Review
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        {/* modal */}
+        <div>
+          <form onSubmit={handleSubmit}>
+            <div
+              className={`fixed z-[100] flex items-center justify-center ${
+                openModal ? "opacity-1 visible" : "invisible opacity-0"
+              } inset-0  backdrop-blur-sm duration-100`}
+            >
+              <div
+                className={`absolute w-[350px] rounded-lg bg-white p-3 pb-5 text-center drop-shadow-2xl dark:text-black ${
+                  openModal
+                    ? "scale-1 opacity-1 duration-300"
+                    : "scale-0 opacity-0 duration-150"
+                } `}
+              >
+                <MdOutlineCancel
+                  onClick={() => setOpenModal(false)}
+                  className="mx-auto mr-0 w-8 h-6 cursor-pointer"
+                />
+                <h1 className="mb-2 text-2xl font-semibold">Write A Comment</h1>
+                <div>
+                  <label htmlFor="website" className="text-lg mr-3">
+                    Rate Us
+                  </label>
+                  <select
+                    className="w-[25%] border-2 mt-4 p-1 rounded-md"
+                    name="rating"
+                    id="subcategory"
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+                <div className="mt-5 w-full">
+                  <textarea
+                    id="comment"
+                    name="comment"
+                    placeholder="Write your Comment"
+                    className="w-full h-[100px] rounded-md  border-2  "
+                  ></textarea>
+                </div>
+                <button
+                  onClick={() => setOpenModal(false)}
+                  className="rounded-md mt-8 bg-indigo-600 hover:bg-indigo-700 px-6 py-1.5 text-white"
+                >
+                  Ok
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

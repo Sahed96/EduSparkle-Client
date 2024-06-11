@@ -44,22 +44,8 @@ const MyApplication = () => {
       setSingleApplicantData(res.data);
       console.log(singleApplicantData);
     });
-    // if (Object.keys(singleApplicantData).length > 0) {
-    //   return (
-    //     <div className=" w-12 h-12 mb-4 mx-auto">
-    //       <div className="grid grid-cols-2 h-full w-full overflow-hidden shadow-lg rounded-full animate-spin">
-    //         <span className="h-6 w-6 rounded-tl-full bg-transparent"></span>
-    //         <span className="h-6 w-6 rounded-tr-full bg-sky-500"></span>
-    //         <span className="h-6 w-6 rounded-bl-full bg-sky-500"></span>
-    //         <span className="h-6 w-6 rounded-br-full"></span>
-    //       </div>
-    //     </div>
-    //   );
-    // }
-    // console.log(data);
-    // axiosSecure.post("/reviewData", data);
   };
-  // if (data) {
+
   useEffect(() => {
     if (Object.keys(singleApplicantData).length > 0) {
       console.log(singleApplicantData);
@@ -67,6 +53,8 @@ const MyApplication = () => {
         name: user?.displayName,
         email: user?.email,
         rating: formData.rating,
+        image: singleApplicantData.image,
+        subject: singleApplicantData.subject,
         comment: formData.comment,
         scholarshipId: singleApplicantData.scholarshipId,
         Scholarship_Name: singleApplicantData.Scholarship_Name,
@@ -140,10 +128,10 @@ const MyApplication = () => {
                 <td className="py-4 px-6 border-b text-end">
                   ${item.Service_Charge}
                 </td>
-                <td className="py-4 px-6 border-b text-end">n/a</td>
+                <td className="py-4 px-6 border-b text-end">{item.feedback}</td>
                 <td className="py-4 px-6 border-b text-end">
                   <span className="px-3 py-1 font-semibold rounded-md bg-sky-400 text-gray-50">
-                    <span>Pending</span>
+                    <span>{item.status}</span>
                   </span>
                 </td>
                 <td className="py-4 px-6 border-b text-end">

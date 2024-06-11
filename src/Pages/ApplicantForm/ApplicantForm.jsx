@@ -67,6 +67,7 @@ const ApplicantForm = () => {
         University_Country,
         Service_Charge,
         Scholarship_Name,
+        status: "pending",
       };
 
       const newRes = await axiosSecure.post("/applicantData", applicantData);

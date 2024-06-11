@@ -14,6 +14,10 @@ import Profile from "../Layout/Dashboard/Page/Profile.jsx/Profile";
 import MyApplication from "../Layout/Dashboard/Page/MyApplication/MyApplication";
 import MyReviews from "../Layout/Dashboard/Page/MyReviews/MyReviews";
 import Users from "../Layout/Dashboard/Page/Users/Users";
+import ManageScholarship from "../Layout/Dashboard/Page/ManageScholarship/ManageScholarship";
+import AddScholarship from "../Layout/Dashboard/Page/AddScholarship/AddScholarship";
+import ManageReview from "../Layout/Dashboard/Page/ManageReview/ManageReview";
+import ManageApplication from "../Layout/Dashboard/Page/ManageApplication/ManageApplication";
 
 export const router = createBrowserRouter([
   {
@@ -88,6 +92,38 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyReviews />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manageScholarship",
+        element: (
+          <PrivateRoute>
+            <ManageScholarship />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "addScholarship",
+        element: (
+          <PrivateRoute>
+            <AddScholarship />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manageReview",
+        element: (
+          <PrivateRoute>
+            <ManageReview />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manageApplication",
+        element: (
+          <PrivateRoute>
+            <ManageApplication />
           </PrivateRoute>
         ),
       },

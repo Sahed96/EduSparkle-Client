@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import UseDelete from "../../../../Hooks/UseDelete";
 
 const Users = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [] } = useQuery({
+  const { refetch, data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
@@ -55,7 +56,12 @@ const Users = () => {
                   </select>
                 </td>
                 <td>
-                  <button className="flex items-center rounded-full bg-red-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-red-700">
+                  <button
+                    onClick={() =>
+                      UseDelete({ api: "userDelete", id: user._id, refetch })
+                    }
+                    className="flex items-center rounded-full bg-red-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-red-700"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"

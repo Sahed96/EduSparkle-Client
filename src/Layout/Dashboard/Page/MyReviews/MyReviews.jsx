@@ -3,17 +3,22 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../AuthProvider/useAuth";
 import Timestamp from "react-timestamp";
 import { MdEditNote } from "react-icons/md";
+import UseDelete from "../../../../Hooks/UseDelete";
 
 const MyReviews = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { data: reviews = [] } = useQuery({
+  const { refetch, data: reviews = [] } = useQuery({
     queryKey: ["review"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/myReviews/${user?.email}`);
       return res.data;
     },
   });
+
+  const handleDelete = (id) => {
+    UseDelete({ api: "reviewDelete", id, refetch });
+  };
 
   return (
     <div>
@@ -45,7 +50,10 @@ const MyReviews = () => {
                 <td className="py-4 px-6 border-b text-end">
                   <ul className="space-y-3">
                     <li>
-                      <button className="flex items-center rounded-full bg-red-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-red-700">
+                      <button
+                        onClick={() => handleDelete(review._id)}
+                        className="flex items-center rounded-full bg-red-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-red-700"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"

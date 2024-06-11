@@ -1,17 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Timestamp from "react-timestamp";
 import Star from "../../../../Components/Star";
+import UseDelete from "../../../../Hooks/UseDelete";
+import useReview from "../../../../Hooks/useReview";
 
 const ManageReview = () => {
-  const axiosSecure = useAxiosSecure();
-  const { data: reviews = [] } = useQuery({
-    queryKey: ["reviews"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/allReview");
-      return res.data;
-    },
-  });
+  const [refetch, reviews] = useReview();
+
   return (
     <section className=" dark:bg-gray-100 dark:text-gray-800">
       <div className="container flex flex-col items-center mx-auto mb-6 md:p-10 md:px-12">
@@ -64,7 +58,16 @@ const ManageReview = () => {
                   </a>
                 </div>
                 <div className="mt-4 mx-auto text-center items-center justify-center">
-                  <button className="flex  items-center rounded-full bg-red-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-red-700">
+                  <button
+                    onClick={() =>
+                      UseDelete({
+                        api: "reviewDelete",
+                        id: review._id,
+                        refetch,
+                      })
+                    }
+                    className="flex  items-center rounded-full bg-red-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-red-700"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"

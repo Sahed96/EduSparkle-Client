@@ -4,21 +4,19 @@ import { Link } from "react-router-dom";
 const Cards = ({ item }) => {
   return (
     <div>
-      <div className="mx-auto my-10 max-w-[450px] space-y-6 rounded-xl bg-white px-4 pb-8 pt-4 font-sans shadow-lg ">
+      <div className="mx-auto space-y-6 rounded-xl bg-white px-4 pb-8 pt-4 font-sans shadow-lg ">
         <div className="relative flex h-48 w-full justify-center lg:h-[280px]">
           <div className="absolute bg-[#2F4F4F] px-3 py-1 rounded-full max-w-max text-white left-4 right-4 top-4 flex items-center justify-between">
             {/* love  */}
             {item.University_City}, {item.University_Country}
           </div>
           <img
-            width={300}
-            height={300}
             className="h-full w-full rounded-lg bg-black/40"
             src={item.University_Image}
             alt="card navigate ui"
           />
         </div>
-        <div className="mx-auto w-[85%] space-y-2 text-center font-semibold">
+        <div className="mx-auto h-[150px] space-y-2 text-center font-semibold">
           <h2 className="text-sm md:text-base lg:text-2xl">
             {item.University_Name}
           </h2>

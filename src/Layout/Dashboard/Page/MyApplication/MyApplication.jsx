@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
+import UseDelete from "../../../../Hooks/UseDelete";
+
 const MyApplication = () => {
   const [singleApplicantData, setSingleApplicantData] = useState({});
   const [id, setId] = useState("");
@@ -19,7 +21,11 @@ const MyApplication = () => {
   const { user } = useAuth();
 
   const axiosSecure = useAxiosSecure();
-  const { data: applicantData = [], isLoading } = useQuery({
+  const {
+    refetch,
+    data: applicantData = [],
+    isLoading,
+  } = useQuery({
     queryKey: ["applicantData", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/myApplication/${user?.email}`);
@@ -44,6 +50,19 @@ const MyApplication = () => {
       setSingleApplicantData(res.data);
       console.log(singleApplicantData);
     });
+
+    e.target.reset();
+  };
+
+  const handleApplicationDelete = (id) => {
+    // axiosSecure.delete(`/applicationDelete/${id}`).then((res) => {
+    //   console.log(res.data);
+    //   if (res.data.deletedCount > 0) {
+    //     refetch();
+    //   }
+    // });
+
+    UseDelete({ api: "applicationDelete", id, refetch });
   };
 
   useEffect(() => {
@@ -169,7 +188,10 @@ const MyApplication = () => {
                       </button>
                     </li>
                     <li>
-                      <button className="flex items-center rounded-full bg-red-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-red-700">
+                      <button
+                        onClick={() => handleApplicationDelete(item._id)}
+                        className="flex items-center rounded-full bg-red-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-red-700"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"

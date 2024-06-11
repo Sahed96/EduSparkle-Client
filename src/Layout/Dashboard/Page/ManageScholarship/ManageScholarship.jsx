@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import { MdEditNote } from "react-icons/md";
+import UseDelete from "../../../../Hooks/UseDelete";
 
 const ManageScholarship = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: scholarship = [] } = useQuery({
+  const { refetch, data: scholarship = [] } = useQuery({
     queryKey: ["scholarship"],
     queryFn: async () => {
       const res = await axiosSecure.get("/allScholarship");
@@ -67,7 +68,16 @@ const ManageScholarship = () => {
                       </li>
                     </li>
                     <li>
-                      <button className="flex items-center rounded-full bg-red-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-red-700">
+                      <button
+                        onClick={() =>
+                          UseDelete({
+                            api: "scholarshipDelete",
+                            id: item._id,
+                            refetch,
+                          })
+                        }
+                        className="flex items-center rounded-full bg-red-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-red-700"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"

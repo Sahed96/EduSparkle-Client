@@ -212,7 +212,7 @@ const ManageApplication = () => {
             } inset-0 bg-black/20 backdrop-blur-sm duration-100`}
           >
             <div
-              className={`absolute max-w-md rounded-lg bg-white p-3 pb-5 text-center drop-shadow-2xl dark:bg-gray-800 dark:text-white ${
+              className={`absolute lg:w-[30%]   rounded-lg bg-white p-3 pb-5 text-center drop-shadow-2xl ${
                 openFeedback
                   ? "scale-1 opacity-1 duration-300"
                   : "scale-0 opacity-0 duration-150"
@@ -220,7 +220,7 @@ const ManageApplication = () => {
             >
               <svg
                 onClick={() => setOpenFeedback(false)}
-                className="mx-auto mr-0 w-8 cursor-pointer fill-black dark:fill-white"
+                className="mx-auto mr-0 w-8 fill-black cursor-pointer"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -233,19 +233,19 @@ const ManageApplication = () => {
               </svg>
               <form onSubmit={handleFeedback}>
                 <label className="form-control">
-                  <div className="label">
-                    <span className="label-text">Feedback</span>
+                  <div className="label flex mb-6 justify-center">
+                    <span className="label-text text-3xl">Feedback</span>
                   </div>
                   <textarea
                     name="feedback"
-                    className="textarea textarea-bordered h-24"
-                    placeholder="Bio"
+                    className="textarea textarea-lg textarea-bordered h-24"
+                    placeholder="write your feedback here"
                   ></textarea>
                 </label>
 
                 <button
                   onClick={() => setOpenFeedback(false)}
-                  className="rounded-md bg-indigo-600 hover:bg-indigo-700 px-6 py-1.5 text-white"
+                  className="rounded-md mt-3 bg-indigo-600 hover:bg-indigo-700 px-6 py-1.5 text-white"
                 >
                   Ok
                 </button>

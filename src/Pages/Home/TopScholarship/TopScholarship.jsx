@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Cards from "../../AllScholarship/Cards";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const TopScholarship = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const [sort, setSort] = useState("");
   const { data: scholarship = [] } = useQuery({
     queryKey: ["scholarship", sort],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/topScholarship?sort=${sort}`);
+      const res = await axiosPublic.get(`/topScholarship?sort=${sort}`);
       return res.data;
     },
   });
@@ -22,15 +22,16 @@ const TopScholarship = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h1 className="text-center mb-5 text-4xl font-bold">Top Scholarships</h1>
-      <div className="flex justify-end">
+      <h1 className="text-center mb-5 mt-14 text-5xl font-bold">
+        Top Scholarships
+      </h1>
+      <div className="flex mb-5 justify-end">
         <select
+          defaultValue={sort}
           onChange={handleSort}
           className="select select-bordered w-full max-w-[200px] mr-12"
         >
-          <option disabled selected>
-            sort by
-          </option>
+          <option value="sort">sort by</option>
           <option value="fees">Application Fees</option>
           <option value="date">recently posted</option>
         </select>

@@ -2,8 +2,11 @@ import Timestamp from "react-timestamp";
 import Star from "../../../../Components/Star";
 import UseDelete from "../../../../Hooks/UseDelete";
 import useReview from "../../../../Hooks/useReview";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 const ManageReview = () => {
+  const axiosSecure = useAxiosSecure();
+
   const [refetch, reviews] = useReview();
 
   return (
@@ -64,6 +67,7 @@ const ManageReview = () => {
                         api: "reviewDelete",
                         id: review._id,
                         refetch,
+                        axiosSecure,
                       })
                     }
                     className="flex  items-center rounded-full bg-red-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-red-700"

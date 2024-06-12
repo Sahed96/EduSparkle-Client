@@ -1,8 +1,7 @@
 import Swal from "sweetalert2";
-import { axiosSecure } from "./useAxiosSecure";
 
-const UseDelete = async ({ api, id, refetch }) => {
-  console.log(api, id);
+const UseDelete = async ({ api, id, refetch, axiosSecure }) => {
+  // const axiosSecure = useAxiosSecure();
   const res = await axiosSecure.delete(`/handleDelete?api=${api}&id=${id}`);
   const deletedCount = res.data?.deletedCount;
   if (deletedCount > 0) {

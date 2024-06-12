@@ -1,7 +1,7 @@
 import useReview from "../../../Hooks/useReview";
 
 const Testimonial = () => {
-  const [refetch, reviews] = useReview();
+  const [, reviews] = useReview();
   return (
     <div>
       <section className="my-8 bg-gray-100 text-gray-800">

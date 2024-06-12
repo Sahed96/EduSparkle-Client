@@ -17,7 +17,7 @@ const MyReviews = () => {
   });
 
   const handleDelete = (id) => {
-    UseDelete({ api: "reviewDelete", id, refetch });
+    UseDelete({ api: "reviewDelete", id, refetch, axiosSecure });
   };
 
   return (

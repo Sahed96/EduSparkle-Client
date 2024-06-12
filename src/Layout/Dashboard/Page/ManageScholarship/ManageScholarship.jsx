@@ -74,6 +74,7 @@ const ManageScholarship = () => {
                             api: "scholarshipDelete",
                             id: item._id,
                             refetch,
+                            axiosSecure,
                           })
                         }
                         className="flex items-center rounded-full bg-red-500 px-4 py-2 font-bold text-white shadow-md transition-all duration-300 hover:bg-red-700"

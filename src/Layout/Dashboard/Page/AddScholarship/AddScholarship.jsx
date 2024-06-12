@@ -1,8 +1,8 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+
 // import useAuth from "../../../../AuthProvider/useAuth";
 import { useForm } from "react-hook-form";
 
@@ -60,13 +60,10 @@ const AddScholarship = () => {
 
   return (
     <div>
-      <h1 className="text-4xl text-center mx-auto mb-3">Applicant form</h1>
-      <div className="max-w-3xl bg-gray-100 p-6 rounded-2xl mt-4 mx-auto">
-        {/* <div>
-          <img src={image} alt="" />
-        </div> */}
+      <h1 className="text-4xl text-center mx-auto mb-3">Add Scholarship</h1>
+      <div className="max-w-7xl bg-gray-100 p-6 rounded-2xl mt-4 mx-auto">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="grid grid-cols-5 gap-5">
+          <div className="grid grid-cols-2 gap-5">
             <div className="space-y-2 col-span-2 text-sm">
               <label htmlFor="Applicant Name" className="block ">
                 University image
@@ -74,10 +71,10 @@ const AddScholarship = () => {
               <input
                 type="file"
                 {...register("image")}
-                className="file-input file-input-bordered file-input-info w-full max-w-xs"
+                className="file-input file-input-bordered file-input-info w-1/2 "
               />
             </div>
-            <div className="space-y-2 col-span-1 text-sm">
+            <div className="space-y-2  text-sm">
               <label htmlFor="Applicant Name" className="block ">
                 University Name
               </label>
@@ -89,7 +86,7 @@ const AddScholarship = () => {
                 {...register("University_Name")}
               />
             </div>
-            <div className="space-y-2 col-span-1 text-sm">
+            <div className="space-y-2 text-sm">
               <label htmlFor="Applicant Name" className="block ">
                 Scholarship Name
               </label>
@@ -101,21 +98,21 @@ const AddScholarship = () => {
                 {...register("Scholarship_Name")}
               />
             </div>
-          </div>
-          <div className="space-y-2 text-sm">
-            <label htmlFor="password" className="block ">
-              University Country
-            </label>
-            <input
-              type="text"
-              name="address"
-              id="address"
-              placeholder="enter your full address"
-              className="w-full px-4 py-3 rounded-md border border-indigo-300 focus:outline-none focus:ring  "
-              {...register("University_Country", { required: true })}
-            />
-          </div>
-          <div className="grid grid-cols-3 gap-5">
+
+            <div className="space-y-2 text-sm">
+              <label htmlFor="password" className="block ">
+                University Country
+              </label>
+              <input
+                type="text"
+                name="address"
+                id="address"
+                placeholder="enter your full address"
+                className="w-full px-4 py-3 rounded-md border border-indigo-300 focus:outline-none focus:ring  "
+                {...register("University_Country", { required: true })}
+              />
+            </div>
+
             <div className="space-y-2 text-sm">
               <label htmlFor="phone" className="block ">
                 University city
@@ -157,8 +154,7 @@ const AddScholarship = () => {
                 <option value="Masters">Masters</option>
               </select>
             </div>
-          </div>
-          <div className="grid grid-cols-3 gap-5">
+
             <div className="space-y-2 text-sm">
               <label htmlFor="phone" className="block ">
                 Subject category
@@ -201,9 +197,8 @@ const AddScholarship = () => {
                 {...register("Tuition_fees")}
               />
             </div>
-          </div>
-          <div className="grid grid-cols-4 gap-5">
-            <div className="space-y-2 col-span-2 text-sm">
+
+            <div className="space-y-2  text-sm">
               <label htmlFor="phone" className="block ">
                 Application Fees
               </label>
@@ -215,7 +210,7 @@ const AddScholarship = () => {
                 {...register("Application_Fees")}
               />
             </div>
-            <div className="space-y-2 col-span-1 text-sm">
+            <div className="space-y-2 text-sm">
               <label htmlFor="phone" className="block ">
                 Service charge
               </label>
@@ -228,7 +223,7 @@ const AddScholarship = () => {
               />
             </div>
 
-            <div className="space-y-2 col-span-1 text-sm">
+            <div className="space-y-2 text-sm">
               <label htmlFor="phone" className="block ">
                 Application Deadline
               </label>

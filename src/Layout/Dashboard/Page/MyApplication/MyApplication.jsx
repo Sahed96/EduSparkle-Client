@@ -55,14 +55,7 @@ const MyApplication = () => {
   };
 
   const handleApplicationDelete = (id) => {
-    // axiosSecure.delete(`/applicationDelete/${id}`).then((res) => {
-    //   console.log(res.data);
-    //   if (res.data.deletedCount > 0) {
-    //     refetch();
-    //   }
-    // });
-
-    UseDelete({ api: "applicationDelete", id, refetch });
+    UseDelete({ api: "applicationDelete", id, refetch, axiosSecure });
   };
 
   useEffect(() => {
